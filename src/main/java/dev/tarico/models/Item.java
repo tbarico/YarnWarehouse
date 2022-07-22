@@ -24,13 +24,13 @@ public class Item {
      */
     public Item(int itemId, String categoryName, int quantityTotal, double price) {
         try {
-            ValueChecker.checkId(itemId);
+            ValueChecker.checkNegative(itemId, "id");
             this.itemId = itemId;
             ValueChecker.checkCategoryName(categoryName);
             this.categoryName = categoryName;
-            ValueChecker.checkQuantity(quantityTotal);
+            ValueChecker.checkNegative(quantityTotal, "quantity");
             this.quantityTotal = quantityTotal;
-            ValueChecker.checkPrice(price);
+            ValueChecker.checkNegative(price, "price");
             this.price = price;
             this.valid = true;
         } catch(RuntimeException e) {
@@ -68,7 +68,7 @@ public class Item {
      */
     public void setItemId(int itemId) {
         try {
-            ValueChecker.checkId(itemId);
+            ValueChecker.checkNegative(itemId, "id");
             this.itemId = itemId;
         } catch(IllegalArgumentException e) {
             valid = false;
@@ -116,7 +116,7 @@ public class Item {
      */
     public void setQuantityTotal(int quantityTotal) {
         try {
-            ValueChecker.checkQuantity(quantityTotal);
+            ValueChecker.checkNegative(quantityTotal, "quantity");
             this.quantityTotal = quantityTotal;
         } catch(IllegalArgumentException e) {
             valid = false;
@@ -139,7 +139,7 @@ public class Item {
      */
     public void setPrice(double price) {
         try {
-            ValueChecker.checkPrice(price);
+            ValueChecker.checkNegative(price, "price");
             this.price = price;
         } catch(IllegalArgumentException e) {
             valid = false;
