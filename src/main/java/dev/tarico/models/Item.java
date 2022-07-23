@@ -71,7 +71,7 @@ public class Item {
             ValueChecker.checkNegative(itemId, "id");
             this.itemId = itemId;
         } catch(IllegalArgumentException e) {
-            valid = false;
+            //silently fail for now
         }
     }
 
@@ -95,7 +95,7 @@ public class Item {
             ValueChecker.checkCategoryName(categoryName);
             this.categoryName = categoryName;
         } catch(RuntimeException e) {
-            valid = false;
+            //silently fail for now
         }
     }
 
@@ -119,7 +119,7 @@ public class Item {
             ValueChecker.checkNegative(quantityTotal, "quantity");
             this.quantityTotal = quantityTotal;
         } catch(IllegalArgumentException e) {
-            valid = false;
+            //silently fail for now
         }
     }
 
@@ -142,7 +142,7 @@ public class Item {
             ValueChecker.checkNegative(price, "price");
             this.price = price;
         } catch(IllegalArgumentException e) {
-            valid = false;
+            //silently fail for now
         }
     }
 
