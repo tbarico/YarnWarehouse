@@ -61,8 +61,7 @@ public class Item {
     }
 
     /**
-     * Sets the item's id to the parameter specified. Will invalidate item if parameter 
-     * is negative.
+     * Sets the item's id to the parameter specified. 
      * 
      * @param itemId - Id of the item. Must not be negative.
      */
@@ -85,8 +84,7 @@ public class Item {
     }
 
     /**
-     * Sets the item's category to the specified parameter. Will invalidate item if
-     * given a null or undefined category name.
+     * Sets the item's category to the specified parameter. 
      * 
      * @param categoryName - name of the item's category. Must not be null. Must be either "Yarn" or "Knitting Needles".
      */
@@ -109,8 +107,7 @@ public class Item {
     }
 
     /**
-     * Sets the item's total qunatity to the parameter specified. Will invalidate item if 
-     * parameter is negative.
+     * Sets the item's total qunatity to the parameter specified. 
      * 
      * @param quantityTotal - the total quantity of this item. Must not be negative.
      */
@@ -133,7 +130,7 @@ public class Item {
     }
 
     /**
-     * Sets the price of the item to the parameter specified. Will invalidate the item if given a negative value.
+     * Sets the price of the item to the parameter specified. 
      * 
      * @param price - price of the item. Must not be negative.
      */
