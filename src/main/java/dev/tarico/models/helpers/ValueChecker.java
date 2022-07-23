@@ -9,14 +9,17 @@ import java.util.regex.Matcher;
  * @author Tara Arico 7.22.2022
  */
 public class ValueChecker {
+    /**
+     * Creates a ValueChecker object.
+     */
     public ValueChecker() {}
 
     /**
      * Checks the given value to ensure its not negative. If so, throws an 
      * IllegalArgumentException with the appropiate message.
      * 
-     * @params num - number to check. Must not be negative
-     * @params field - name of the field being checked
+     * @param num - number to check. Must not be negative
+     * @param field - name of the field being checked
      * @throws IllegalArgumentException - if the num is negative
      */
     public static void checkNegative(double num, String field) {
@@ -64,7 +67,7 @@ public class ValueChecker {
      * Validates the given string against a set list of acceptable loaction types.
      * Must not be null. Must be either "Warehouse" or "Store"
      * 
-     * @params type - type to check against
+     * @param type - type to check against
      * @throws IllegalArgumentException - thrown if not given a specific location type
      * @throws NullPointerExpection - thrown if given a null value
      */
@@ -80,7 +83,7 @@ public class ValueChecker {
      * Validates the given string against a set list of acceptable category names. Must not
      * be null. Must be either "Yarn" or "Knitting Needles".
      * 
-     * @params name - name to check against
+     * @param name - name to check against
      * @throws IllegalArgumentException - thrown if not given a specific category name
      * @throws NullPointerException - thrown if given a null value
      */
