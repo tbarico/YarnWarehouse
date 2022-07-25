@@ -106,6 +106,7 @@ public class LocationBuilder {
      * @return the LocationBuilder object itself
      */
     public LocationBuilder type(String type) {
+        type = type.trim();
         try {
             ValueChecker.checkLocationType(type);
             this.type = type;

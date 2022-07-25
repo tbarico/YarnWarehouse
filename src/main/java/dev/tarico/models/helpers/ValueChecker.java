@@ -72,10 +72,10 @@ public class ValueChecker {
      * @throws NullPointerExpection - thrown if given a null value
      */
     public static void checkLocationType(String type) {
-        if(type != null)
+        if(type != null) {
             if(!type.equals("Warehouse") && !type.equals("Store"))
                 throw new IllegalArgumentException("Invalid location type.");
-        else
+        } else
             throw new NullPointerException("Type must not be null.");
     }
 
@@ -88,10 +88,10 @@ public class ValueChecker {
      * @throws NullPointerException - thrown if given a null value
      */
     public static void checkCategoryName(String name){
-        if(name != null)
+        if(name != null) {
             if(!name.equals("Yarn") && !name.equals("Knitting Needles"))
                 throw new IllegalArgumentException("Invalid category name.");
-        else
+        } else
             throw new NullPointerException("Category name must not be null.");
     }
 }
