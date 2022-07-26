@@ -12,8 +12,9 @@ import dev.tarico.models.Item;
  */
 public interface InventoryDAO {
     public List<Inventory> findAll();
-    public Inventory findById();
-    public List<Item> findItemsByInventoryId(int inventoryId);
+    public Inventory findById(int inventory_id);
+    //find the list of items in a given location(i.e. the full inventory at that location)
+    public List<Item> findItemsAtLocation(int locationId);
     public boolean addInventory(Inventory inventory);
     public boolean updateQuantity(int id, int quantity);
     public boolean updateLocation(int id, int locationId);
