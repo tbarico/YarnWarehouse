@@ -2,7 +2,6 @@ package dev.tarico.daos;
 
 import java.util.List;
 import dev.tarico.models.Inventory;
-import dev.tarico.models.Item;
 
 /**
  * Interface that defines several methods to access data concerning the Inventory table.
@@ -13,8 +12,8 @@ import dev.tarico.models.Item;
 public interface InventoryDAO {
     public List<Inventory> findAll();
     public Inventory findById(int inventoryId);
-    //find the list of items in a given location(i.e. the full inventory at that location)
-    public List<Item> findItemsAtLocation(int locationId);
+    //find the list of inventories in a given location(i.e. the full inventory at that location)
+    public List<Inventory> findInventoryAtLocation(int locationId);
     public boolean addInventory(Inventory inventory);
     public boolean updateQuantity(int inventoryId, int quantity);
     public boolean updateLocation(int inventoryId, int locationId);
