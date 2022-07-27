@@ -1,7 +1,7 @@
 package dev.tarico.models.builders;
 
 import dev.tarico.models.Location;
-import dev.tarico.models.helpers.ValueChecker;
+import dev.tarico.services.ValueChecker;
 
 /**
  * Helper class to Location. Builds a Location object modeled after the builder design pattern.

@@ -1,4 +1,4 @@
-package dev.tarico.models.helpers;
+package dev.tarico.services;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;

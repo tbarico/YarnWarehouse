@@ -1,7 +1,7 @@
 package dev.tarico.models;
 
 import dev.tarico.models.builders.LocationBuilder;
-import dev.tarico.models.helpers.ValueChecker;
+import dev.tarico.services.ValueChecker;
 
 /**
  * Representation of a physical location (either a Store or Warehouse) where items are 

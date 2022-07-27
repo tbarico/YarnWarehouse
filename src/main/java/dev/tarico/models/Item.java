@@ -1,6 +1,6 @@
 package dev.tarico.models;
 
-import dev.tarico.models.helpers.ValueChecker;
+import dev.tarico.services.ValueChecker;
 
 /**
  * Denotes a single item that is stored at a location. 
