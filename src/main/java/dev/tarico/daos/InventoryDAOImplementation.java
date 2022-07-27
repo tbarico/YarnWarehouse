@@ -225,5 +225,63 @@ public class InventoryDAOImplementation implements InventoryDAO {
         }
         return false;
     }
+
+    /**
+     * Retrieves a list of Inventory objects that share the same itemId.
+     * 
+     * @params itemId - the item id to query for when searching the Inventory table.
+     * @return list of Inventory objects.
+     */
+    @Override
+    public List<Inventory> findItemsInInventory(int itemId) {
+        String query = "SELECT * FROM inventory WHERE item_num = ?";
+        try(Connection conn = YarnDBConnection.getConnectionInstance().getConnection()) {
+            PreparedStatement pstatement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstatement.setInt(1, itemId);
+            ResultSet result = pstatement.executeQuery();
+            ArrayList<Inventory> inventories = new ArrayList<Inventory>();
+            while(result.next()) {
+                Inventory inventory = new Inventory(result.getInt("inventory_id"), result.getInt("item_num"), result.getInt("locat_id"), result.getInt("quantity"));
+                inventories.add(inventory);
+            }
+            return inventories;
+        } catch(SQLException e) {
+            //silently fail for now
+        }
+        return null;
+    }
+
+    /**
+     * Remove several rows of the Inventory table at once.
+     * 
+     * @param inventories - list of Inventory objects to find and remove.
+     * @return true if successful, false otherwise.
+     */
+    @Override
+    public boolean removeInventories(List<Inventory> inventories) {
+        if (inventories != null && inventories.size() != 0) {
+            String query = "DELETE FROM inventory WHERE inventory_id = ?";
+            try(Connection conn = YarnDBConnection.getConnectionInstance().getConnection()) {
+                conn.setAutoCommit(false);
+                PreparedStatement pstatement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                int affectedRows = 0;
+                for (Inventory i : inventories) {
+                    pstatement.setInt(1, i.getInventoryId());
+                    affectedRows += pstatement.executeUpdate();
+                }
+                if(affectedRows == inventories.size()) {
+                    conn.commit();
+                    return true;
+                } else {
+                    conn.rollback();
+                }
+            } catch(SQLException e) {
+                //silently fail for now
+            }
+        } else if(inventories.size() == 1) {
+            return removeInventory(inventories.get(0).getInventoryId());
+        }
+        return false;
+    }
     
 }

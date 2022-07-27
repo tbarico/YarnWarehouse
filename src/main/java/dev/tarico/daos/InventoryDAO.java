@@ -19,4 +19,6 @@ public interface InventoryDAO {
     public boolean updateLocation(int inventoryId, int locationId);
     public boolean updateInventory(Inventory inventory);
     public boolean removeInventory(int invetoryId);   
+    public List<Inventory> findItemsInInventory(int itemId);
+    public boolean removeInventories(List<Inventory> inventories);
 }

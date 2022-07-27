@@ -11,11 +11,11 @@ import dev.tarico.models.Item;
  */
 public interface ItemDAO {
     public List<Item> findAll();
-    public Item findById(int id);
+    public Item findById(int itemId);
     public List<Item> findByCategoryName(String name);
     public boolean addItem(Item item);
-    public boolean updatePrice(int id, double price);
-    public boolean updateQuantity(int id, int quantity);
+    public boolean updatePrice(int itemId, double price);
+    public boolean updateQuantity(int itemId, int quantity);
     public boolean updateItem(Item item);
-    public boolean removeItem(int id);
+    public boolean removeItem(int itemId);
 }
