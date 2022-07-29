@@ -1,5 +1,5 @@
 {
-  "name": "yarn-warehouse-app",
+  "name": "yarn-warehouse",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
