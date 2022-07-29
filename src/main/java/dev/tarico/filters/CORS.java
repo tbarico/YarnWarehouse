@@ -22,7 +22,7 @@ public class CORS implements Filter {
 	public void destroy() {
 	}
     /**
-     * Adds the appriopriate headers and sends the request on.
+     * Adds the appropriate headers and sends the request on.
      * 
      * @param request - original request.
      * @param response - modified response.

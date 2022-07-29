@@ -1,0 +1,24 @@
+<h2>Storage Locations</h2>
+<!-- put an input form here to find the inventory at a specific location -->
+<!-- see about making buttons in the table to go to that specific one as well -->
+
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Current Capacity</th>
+            <th>Total Capacity</th>
+            <th>Phone Number</th></tr>
+    </thead>
+<tbody>
+    <tr *ngFor="let loc of storageLocations">
+        <td>{{loc.locationId}}</td>
+        <td>{{loc.type}}</td>
+        <td>{{loc.currentCapacity}}</td>
+        <td>{{loc.totalCapacity}}</td>
+        <td>{{loc.phoneNumber}}</td>
+    </tr>
+</tbody>
+</table>
