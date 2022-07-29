@@ -20,9 +20,9 @@ public class YarnDBConnection {
      */
     private YarnDBConnection() {
         try {
-            String file = "src/main/resources/application.properties";
             Class.forName("com.mysql.cj.jdbc.Driver");
-            try(BufferedReader input = new BufferedReader(new FileReader(file))) {
+            try(InputStream input = YarnDBConnection.class.getClassLoader()
+                    .getResourceAsStream("application.properties")) {
                 Properties properties = new Properties();
                 properties.load(input);
                 this.password = properties.getProperty("db.password");
@@ -31,7 +31,7 @@ public class YarnDBConnection {
 
             } catch(IOException e) {
                 //silently fail for now
-                System.out.println("Failed reading from file.");
+                System.out.println("Failed reading from stream.");
                 e.printStackTrace();
             }
         } catch(ClassNotFoundException e) {
