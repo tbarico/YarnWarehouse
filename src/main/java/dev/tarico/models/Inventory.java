@@ -12,7 +12,7 @@ public class Inventory {
     private int itemId;
     private int locationId;
     private int quantity;
-    private boolean valid = false;
+    private boolean valid;
 
     /**
      * Creates an Inveotry object with the specified parameters.

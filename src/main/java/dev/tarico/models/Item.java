@@ -33,7 +33,9 @@ public class Item {
             ValueChecker.checkNegative(price, "price");
             this.price = price;
             this.valid = true;
-        } catch(RuntimeException e) {
+        } catch(IllegalArgumentException e) {
+            this.valid = false;
+        } catch(NullPointerException e) {
             this.valid = false;
         }
         
