@@ -40,3 +40,10 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Tests/Builds
+src/test/*
+target/*
+
+# DB Specific
+src/main/resources/application.properties
