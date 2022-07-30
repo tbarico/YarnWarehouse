@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Inventory } from './models/inventory';
 
 /**
  * 
@@ -11,6 +12,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class InventoryApiService {
+
+  httpOptions = { headers :new HttpHeaders({'Content-Type': 'application/json'})};
   inventoryURL :string = 'inventory/';
 
   constructor(private http :HttpClient) { }
@@ -18,5 +21,9 @@ export class InventoryApiService {
   findInventoryAtLocation(locationId :string) :Observable<any> { 
     const url = `inventory/${locationId}`;
     return this.http.get(environment.url+url);
+  }
+
+  addInventory(inventory :Inventory) :Observable<any> {
+    return this.http.post(environment.url+this.inventoryURL+inventory.locationId, inventory, this.httpOptions);
   }
 }
