@@ -1,0 +1,24 @@
+ 
+<div>
+    <input type="number" name="searchId" #locationId />
+    <button (click)="findInventoryAtLocation(locationId.value)">Show Inventory</button> 
+</div>
+
+<button type="button" (click)="goBack()">Go back</button>
+
+<div *ngIf="inventoryList">
+<table>
+    <thead>
+        <tr>
+            <th>ItemID</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let invent of inventoryList">
+            <td>{{invent.itemId}}</td>
+            <td>{{invent.quantity}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>

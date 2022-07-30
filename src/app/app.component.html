@@ -1,8 +1,7 @@
-<!-- <p>{{title}}</p>
-<p>Counting {{ 5 + 3}} </p>
 
-<button (click)="updateTitle('I changed')">Change Title</button>
-<button (click)="updateTitle('Yarn Warehouse')">Undo Change</button> -->
-<app-storage-location-list>
-
-
+<h1>{{title}}</h1>
+<nav>
+    <a routerLink="/locations">Locations</a>
+    <a routerLink="/inventory/:locationId">Inventory</a>
+</nav>
+<router-outlet></router-outlet>

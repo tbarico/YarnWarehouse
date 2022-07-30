@@ -6,7 +6,7 @@ import { StorageLocationListComponent } from './storage-location-list/storage-lo
 const routes: Routes = [
   {path: 'locations', component: StorageLocationListComponent},
   {path: '', redirectTo: '/locations', pathMatch: 'full'},
-  {path: 'location/:id', component: InventoryComponent }
+  {path: 'inventory/:locationId', component: InventoryComponent }
 
 ];
 

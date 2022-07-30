@@ -1,3 +1,8 @@
+
+/**
+ * 
+ * @author Tara Arico 7.29.2022
+ */
 export class StorageLocation {
     public locationId :number;
     public currentCapacity :number;

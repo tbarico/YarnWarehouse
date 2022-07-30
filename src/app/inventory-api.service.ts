@@ -10,13 +10,13 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class StorageLocationApiService {
-  locationURL :string = 'location/';
-  locationsURL :string = 'locations/';
+export class InventoryApiService {
+  inventoryURL :string = 'inventory/';
 
   constructor(private http :HttpClient) { }
 
-  getLocations() :Observable<any> {
-    return this.http.get(environment.url+this.locationsURL);
+  findInventoryAtLocation(locationId :string) :Observable<any> { 
+    const url = `inventory/${locationId}`;
+    return this.http.get(environment.url+url);
   }
 }

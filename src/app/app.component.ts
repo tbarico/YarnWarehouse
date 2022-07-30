@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 
+/**
+ * 
+ * @author Tara Arico 7.29.2022
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,8 +11,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Yarn Warehouse';
-
-  updateTitle(t :string) {
-    this.title = t;
-  }
 }
