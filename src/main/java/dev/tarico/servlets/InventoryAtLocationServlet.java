@@ -54,13 +54,12 @@ public class InventoryAtLocationServlet extends HttpServlet {
         try {
             InputStream reqBody = req.getInputStream();
             Inventory inventory = mapper.readValue(reqBody, Inventory.class);
-            System.out.println(inventory);
             if (inventory.isValid()) {
                 boolean result = dao.addInventory(inventory);
                 if (result) {
                     resp.setContentType("application/json");
                     resp.getWriter().print(mapper.writeValueAsString("Inventory added to database."));
-                    resp.setStatus(201); // The default is 200
+                    resp.setStatus(201); 
                 } else {
                     resp.setStatus(400);
                     resp.getWriter().print(mapper.writeValueAsString("Unable to create Inventory."));
@@ -70,7 +69,7 @@ public class InventoryAtLocationServlet extends HttpServlet {
                 resp.getWriter().print(mapper.writeValueAsString("Unable to create Inventory."));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //silently fail for now
         }
     }
 
