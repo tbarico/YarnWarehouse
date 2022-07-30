@@ -15,6 +15,11 @@ public class Inventory {
     private boolean valid;
 
     /**
+     * Default, no-params constructor.
+     */
+    public Inventory() {}
+
+    /**
      * Creates an Inveotry object with the specified parameters.
      * 
      * @param inventoryId - id of this Inventory object. Must not be negative.

@@ -15,6 +15,11 @@ public class Item {
     private boolean valid;
 
     /**
+     * Default, no-params constructor.
+     */
+    public Item() {}
+
+    /**
      * Creates an item with the specified parameters.
      * 
      * @param itemId - Id of the item. Must not be negative.

@@ -20,6 +20,11 @@ public class Location {
     private boolean valid;
 
     /**
+     * Default, no-params constructor.
+     */
+    public Location() {}
+
+    /**
      * Creates a Location object using a LocationBuilder.
      * 
      * @param builder - LocationBuilder object with the neccessary fields
