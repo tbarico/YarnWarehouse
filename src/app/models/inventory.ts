@@ -1,5 +1,6 @@
 
 /**
+ * Represents an Inventory object in Java.
  * 
  * @author Tara Arico 7.29.2022
  */

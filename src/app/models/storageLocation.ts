@@ -1,5 +1,6 @@
 
 /**
+ * Represents a Location object in Java.
  * 
  * @author Tara Arico 7.29.2022
  */
