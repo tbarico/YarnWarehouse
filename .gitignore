@@ -47,3 +47,7 @@ target/*
 
 # DB Specific
 src/main/resources/application.properties
+src/main/resources/yarn_db_test_queries.sql
+
+# Unneeded backend generated files
+src/main/webapp/*
