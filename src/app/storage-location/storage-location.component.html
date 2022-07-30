@@ -1,0 +1,16 @@
+<div *ngIf="storageLocation">
+    <table>
+    <thead>
+        <tr>
+            <td>Current Capacity</td>
+            <td>Total Capacity</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{storageLocation.currentCapacity}}</td>
+            <td>{{storageLocation.totalCapacity}}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>

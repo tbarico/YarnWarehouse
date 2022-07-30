@@ -17,6 +17,7 @@ export class InventoryComponent implements OnInit {
 
   inventoryList :Inventory[] = [];
   inventory? :Inventory;
+  locId = '';
 
   constructor(private service :InventoryApiService, private route :ActivatedRoute, private url :Location) { }
 
@@ -35,6 +36,10 @@ export class InventoryComponent implements OnInit {
 
   goBack() {
     this.url.back();
+  }
+
+  getLocationId() {
+    return this.locId;
   }
 
 }

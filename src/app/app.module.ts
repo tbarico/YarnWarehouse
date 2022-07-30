@@ -7,13 +7,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { StorageLocationListComponent } from './storage-location-list/storage-location-list.component';
+import { InventoryAddComponent } from './inventory-add/inventory-add.component';
+import { StorageLocationComponent } from './storage-location/storage-location.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     InventoryComponent,
-    StorageLocationListComponent
+    StorageLocationListComponent,
+    InventoryAddComponent,
+    StorageLocationComponent
   ],
   imports: [
     BrowserModule,
