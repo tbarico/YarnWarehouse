@@ -1,24 +1,24 @@
 <h2>Storage Locations</h2>
 
-<div class="storage-location-list">
-    <a *ngFor="let loc of storageLocations" routerLink="/inventory/{{loc.locationId}}">
+<div class="storage-location-list">  
+    <table>
         <thead>
             <tr>
-                <th>LocationId</th>
-                <th>Type</th>
-                <th>Current Capacity</th>
-                <th>Total Capacity</th>
-                <th>Phone Number</th>
+                <th class="table-item">LocationId</th>
+                <th class="table-item">Type</th>
+                <th class="table-item">Current Capacity</th>
+                <th class="table-item">Total Capacity</th>
+                <th class="table-item">Phone Number</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let loc of storageLocations">
             <tr>
-                <td>{{loc.locationId}}</td>
-                <td>{{loc.type}}</td>
-                <td>{{loc.currentCapacity}}</td>
-                <td>{{loc.totalCapacity}}</td>
-                <td>{{loc.phoneNumber}}</td>
+                <a routerLink="/inventory/{{loc.locationId}}"><td>{{loc.locationId}}</td></a>
+                <td class="table-item">{{loc.type}}</td>
+                <td class="table-item">{{loc.currentCapacity}}</td>
+                <td class="table-item">{{loc.totalCapacity}}</td>
+                <td class="table-item">{{loc.phoneNumber}}</td>
             </tr>
         </tbody>
-    </a>
+    </table>
 </div>

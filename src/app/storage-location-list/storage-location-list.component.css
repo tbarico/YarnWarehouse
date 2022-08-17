@@ -1,28 +1,60 @@
-.storage-location-list {
-    /* flexbox */
+/* .storage-location-list {
+    /* flexbox 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    /*justify-content: space-around;
     align-content: flex-start;
     align-items: flex-start;
 }
 
-a { background-color: #3f255c;
-    border-radius: 2px;
+a { background-color: #1d0a74bd;
+    /* border-radius: 2px;
     padding: 1rem;
     font-size: 1.2rem;
-    text-decoration: none;
-    display: inline-block;
+    text-decoration: none; 
+    display: inline-block; 
     color: #fff;
     text-align: center;
-    width: 100%;
-    min-width: 70%;
     margin: .5rem auto;
-    box-sizing: border-box;
+    /*box-sizing: border-box;
 
-    /* flexbox */
+    /* flexbox 
     order: 0;
     flex: 0 1 auto;
     align-self: auto;
+}
+
+th {
+    justify-content: flex-start;
+}
+tr {
+    word-spacing: normal;
+}
+td {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+} */
+
+.table-item {
+    border-bottom: 1px solid #ddd; /* adds underline to rows */
+    padding: 8px; /* adds a little extra space between elements */
+}
+table {
+    border-collapse: collapse; /* removes tiny white space between column underlines */
+}
+a {
+    background-color: #1d0a74bd;
+    color: white;
+    text-align: justify;
+    text-decoration: none; /* removes default underline */
+    border: none; /* dont want any border lines */
+    border-radius: 3px; /* slight rounded edge */
+    padding: 7px 25px; /*background area to cover */
+    display: inline-block; /* ???? */
+    margin: 5px; /* blank space between elements */
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
 }
