@@ -94,4 +94,11 @@ public class ValueChecker {
         } else
             throw new NullPointerException("Category name must not be null.");
     }
+
+    public static void checkLocationQuantity(int amountToAdd, int existingAmount, int totalCapacity) {
+        if((amountToAdd + existingAmount) > totalCapacity) {
+            throw new RuntimeException("Amount exceeds location's total capacity.");
+        }
+
+    }
 }

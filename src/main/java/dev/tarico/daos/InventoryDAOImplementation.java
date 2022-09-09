@@ -284,4 +284,28 @@ public class InventoryDAOImplementation implements InventoryDAO {
         return false;
     }
     
+    /**
+     * Retrieves specific items at a given location.
+     * 
+     * @param itemId - item to look for.
+     * @param locationId - location to look in.
+     * @return list of Inventory objects.
+     */
+    @Override
+    public Inventory findItemAtLocation(int itemId, int locationId) {
+        String query = "SELECT * FROM inventory WHERE item_num = ? AND locat_id = ?";
+        try(Connection conn = YarnDBConnection.getConnectionInstance().getConnection()) {
+            PreparedStatement pstatement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstatement.setInt(1, itemId);
+            pstatement.setInt(2, locationId);
+            ResultSet result = pstatement.executeQuery();
+            if(result.next()) {
+                Inventory inventory = new Inventory(result.getInt("inventory_id"), result.getInt("item_num"), result.getInt("locat_id"), result.getInt("quantity"));
+                return inventory;
+            }
+        } catch(SQLException e) {
+            //silently fail for now
+        }
+        return null;
+    }
 }

@@ -21,4 +21,5 @@ public interface InventoryDAO {
     public boolean removeInventory(int invetoryId);   
     public List<Inventory> findItemsInInventory(int itemId);
     public boolean removeInventories(List<Inventory> inventories);
+    public Inventory findItemAtLocation(int itemId, int locationId);
 }

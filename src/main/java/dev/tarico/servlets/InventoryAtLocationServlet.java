@@ -9,8 +9,12 @@ import javax.servlet.http.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.tarico.daos.InventoryDAO;
 import dev.tarico.daos.InventoryDAOImplementation;
+import dev.tarico.daos.LocationDAO;
+import dev.tarico.daos.LocationDAOImplementation;
 import dev.tarico.models.Inventory;
+import dev.tarico.models.Location;
 import dev.tarico.services.URLParser;
+import dev.tarico.services.ValueChecker;
 
 /**
  * Manages HTTP requests for inventory at a specific location.
@@ -20,6 +24,7 @@ import dev.tarico.services.URLParser;
 @WebServlet(urlPatterns = "/inventory/*")
 public class InventoryAtLocationServlet extends HttpServlet {
     InventoryDAO dao = new InventoryDAOImplementation();
+    LocationDAO ldao = new LocationDAOImplementation();
     URLParser parser = new URLParser();
     ObjectMapper mapper = new ObjectMapper();
 
@@ -55,10 +60,29 @@ public class InventoryAtLocationServlet extends HttpServlet {
             InputStream reqBody = req.getInputStream();
             Inventory inventory = mapper.readValue(reqBody, Inventory.class);
             if (inventory.isValid()) {
-                boolean result = dao.addInventory(inventory);
+                //verify location can handle amount
+                Location location = ldao.findById(inventory.getLocationId());
+                try {
+                    ValueChecker.checkLocationQuantity(inventory.getQuantity(), location.getCurrentCapacity(), location.getTotalCapacity());
+                } catch (RuntimeException e) {
+                    resp.setStatus(400);
+                    resp.getWriter().print(mapper.writeValueAsString("Unable to create Inventory. "+ e.getMessage()));
+                    return;
+                }
+                //then check to see if item already exists at location
+                Inventory existingInventory = dao.findItemAtLocation(inventory.getItemId(), inventory.getLocationId());
+                boolean result = false;
+                if(existingInventory == null) {
+                    result = dao.addInventory(inventory);
+                    resp.getWriter().print(mapper.writeValueAsString("Inventory added to database."));
+                } else {
+                    result = dao.updateQuantity(inventory.getInventoryId(), inventory.getQuantity()+existingInventory.getQuantity());
+                    resp.getWriter().print(mapper.writeValueAsString("Inventory quantity updated in database."));
+                }
+                //update location's current capacity
+                ldao.updateCurrentCapacity(inventory.getLocationId(), location.getCurrentCapacity()+inventory.getQuantity());
                 if (result) {
                     resp.setContentType("application/json");
-                    resp.getWriter().print(mapper.writeValueAsString("Inventory added to database."));
                     resp.setStatus(201); 
                 } else {
                     resp.setStatus(400);
