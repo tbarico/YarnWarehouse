@@ -97,10 +97,59 @@ public class InventoryAtLocationServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Updates a given row in the Inventory table.
+     * 
+     * @param req - request with the data to update.
+     * @param resp - appropriate response depending on whether or not
+     *          the data was updated successfully or not.
+     */
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        super.doPut(req, resp);
+        try {
+            InputStream reqBody = req.getInputStream();
+            Inventory inventory = mapper.readValue(reqBody, Inventory.class);
+            Inventory check = dao.findById(inventory.getInventoryId());
+            //check to see if valid inventoryid and locationid
+            if(check != null) {
+                Location location = ldao.findById(inventory.getLocationId());
+                if(location != null) {
+                    //check if location can handle new quantity if appliciable
+                    if (check.getQuantity() != inventory.getQuantity()) {
+                        int quantity = inventory.getQuantity() - check.getQuantity();
+                        if (quantity > 0) {
+                            try {
+                                ValueChecker.checkLocationQuantity(quantity, location.getCurrentCapacity(),
+                                        location.getTotalCapacity());
+                            } catch (RuntimeException e) {
+                                resp.setStatus(400);
+                                resp.getWriter().print(
+                                        mapper.writeValueAsString("Unable to update Inventory. " + e.getMessage()));
+                                return;
+                            }
+                        }
+                        ldao.updateCurrentCapacity(inventory.getLocationId(), location.getCurrentCapacity()+quantity);
+                    }
+
+                    boolean result = dao.updateInventory(inventory);
+                    if (result) {
+                        resp.setContentType("application/json");
+                        resp.setStatus(200); 
+                    } else {
+                        resp.setStatus(400);
+                        resp.getWriter().print(mapper.writeValueAsString("Unable to update Inventory."));
+                    }
+                } else {
+                    resp.setStatus(400);
+                resp.getWriter().print(mapper.writeValueAsString("Unable to update Inventory. Invalid Location ID."));
+                }
+            } else {
+                resp.setStatus(400);
+                resp.getWriter().print(mapper.writeValueAsString("Unable to update Inventory. invalid Inventory ID."));
+            }
+        } catch (Exception e) {
+            //silently fail for now
+        }
     }
 
     
