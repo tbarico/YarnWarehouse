@@ -152,5 +152,28 @@ public class InventoryAtLocationServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Deletes a given row in the Inventory table.
+     * 
+     * @param req - request with the data to delete.
+     * @param resp - appropriate response depending on whether or not
+     *          the data was deleted successfully or not.
+     */
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            InputStream reqBody = req.getInputStream();
+            Inventory inventory = mapper.readValue(reqBody, Inventory.class);
+            boolean result = dao.removeInventory(inventory.getInventoryId());
+            if(result) {
+                resp.setStatus(200);
+            } else {
+                resp.setStatus(400);
+                resp.getWriter().print(mapper.writeValueAsString("Unable to delete Inventory."));
+            }
+        } catch (Exception e) {
+            //silently fail for now
+        }
+    }
     
 }
