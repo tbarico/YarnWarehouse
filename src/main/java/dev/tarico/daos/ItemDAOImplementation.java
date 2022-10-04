@@ -125,23 +125,21 @@ public class ItemDAOImplementation implements ItemDAO {
     public boolean removeItem(int itemId) {
         //Need to first find and remove any references to this itemId from the Inventory table
         InventoryDAOImplementation inventoryDAO = new InventoryDAOImplementation();
-        if (inventoryDAO.removeInventories(inventoryDAO.findItemsInInventory(itemId))) {
-            String query = "DELETE FROM item WHERE item_id = ?";
-            try (Connection conn = YarnDBConnection.getConnectionInstance().getConnection()) {
-                conn.setAutoCommit(false);
-                PreparedStatement pstatement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                pstatement.setInt(1, itemId);
-                int affectedRows = pstatement.executeUpdate();
-                if (affectedRows == 1) {
-                    conn.commit();
-                    return true;
-                } else {
-                    conn.rollback();
-                }
-            } catch (SQLException e) {
-                // silently fail for now
+        inventoryDAO.removeInventories(inventoryDAO.findItemsInInventory(itemId));
+        String query = "DELETE FROM item WHERE item_id = ?";
+        try (Connection conn = YarnDBConnection.getConnectionInstance().getConnection()) {
+            conn.setAutoCommit(false);
+            PreparedStatement pstatement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstatement.setInt(1, itemId);
+            int affectedRows = pstatement.executeUpdate();
+            if (affectedRows == 1) {
+                conn.commit();
+                return true;
+            } else {
+                conn.rollback();
             }
-            return false;
+        } catch (SQLException e) {
+            // silently fail for now
         }
         return false;
     }
