@@ -1,0 +1,11 @@
+USE `Tarico_yarn_warehouse`;
+insert into location (location_id, type, curr_capacity, total_capacity, phone_number) values (1, 'Store', 1658, 2000, '0480917962');
+insert into location (location_id, type, curr_capacity, total_capacity, phone_number) values (2, 'Warehouse', 1190, 1750, '2444697804');
+insert into location (location_id, type, curr_capacity, total_capacity, phone_number) values (3, 'Warehouse', 1462, 2500, '0285788528');
+insert into location (location_id, type, curr_capacity, total_capacity, phone_number) values (4, 'Store', 1489, 1500, '8089356071');
+insert into location (location_id, type, curr_capacity, total_capacity, phone_number) values (5, 'Store', 935, 1000, '5091165425');
+insert into location (location_id, type, curr_capacity, total_capacity, phone_number) values (6, 'Store', 1265, 1500, '0877093170');
+insert into location (location_id, type, curr_capacity, total_capacity, phone_number) values (7, 'Store', 1160, 1500, '7745252926');
+insert into location (location_id, type, curr_capacity, total_capacity, phone_number) values (8, 'Store', 1407, 1500, '3129498606');
+insert into location (location_id, type, curr_capacity, total_capacity, phone_number) values (9, 'Store', 1561, 1750, '5638689904');
+insert into location (location_id, type, curr_capacity, total_capacity, phone_number) values (10, 'Warehouse', 1274, 2500, '7427645505');
