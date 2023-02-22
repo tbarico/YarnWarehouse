@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InventoryApiService } from '../inventory-api.service';
 import { Inventory } from '../models/inventory';
+import { Router } from '@angular/router';
 
 /**
  * 
@@ -19,13 +20,14 @@ export class InventoryComponent implements OnInit {
   inventory? :Inventory;
   locId = '';
 
-  constructor(private service :InventoryApiService, private route :ActivatedRoute, private url :Location) { }
+  constructor(private service :InventoryApiService, private route :ActivatedRoute, private url :Location, private router :Router) { }
 
   ngOnInit(): void {
     this.findInventoryFromUrl();
   }
 
   findInventoryAtLocation(locationId :string) {
+    this.url.go(this.router.createUrlTree(['../'], {relativeTo: this.route})+'/'+locationId);
     this.service.findInventoryAtLocation(locationId).subscribe(data => {this.inventoryList = data});
   }
 
