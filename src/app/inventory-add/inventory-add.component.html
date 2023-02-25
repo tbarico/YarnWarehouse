@@ -1,12 +1,12 @@
 <br>
 <form>
-    <label for="inventory-id">ID</label>
-    <input class="add-inventory" id="inventory-id" type="number" #inventoryId />
+    <!-- <label for="inventory-id">ID</label>
+    <input class="add-inventory" id="inventory-id" type="number" [formControl]="inventoryIdControl"> -->
     <label for="item-id">Item ID</label>
-    <input class="add-inventory" id="item-id" #itemId />
+    <input class="add-inventory" id="item-id" type="number" [formControl]="itemIdControl" />
     <label for="location-id">Location ID</label>
-    <input class="add-inventory" id="location-id" #locationId />
+    <input class="add-inventory" id="location-id" type="number" [formControl]="locationIdControl" />
     <label for="quantity">Amount</label>
-    <input class="add-inventory" id="quantity" #quantity />
-    <button type="button" class="add-button" (click)="addInventoryFromForm(inventoryId.value, itemId.value, locationId.value, quantity.value)">Add item to location</button>
+    <input class="add-inventory" id="quantity" type="number" [formControl]="quantityControl" />
+    <button type="button" class="add-button" (click)="addInventoryFromForm()">Add item to location</button>
 </form>

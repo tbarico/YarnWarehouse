@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryApiService } from '../inventory-api.service';
 import { Inventory } from '../models/inventory';
+import { FormControl } from '@angular/forms';
 
 /**
  * 
@@ -13,6 +14,10 @@ import { Inventory } from '../models/inventory';
 })
 export class InventoryAddComponent implements OnInit {
   inventory? :Inventory
+  inventoryIdControl = new FormControl('');
+  itemIdControl = new FormControl('');
+  locationIdControl = new FormControl('');
+  quantityControl = new FormControl('');
 
   constructor(private service :InventoryApiService) { }
 
@@ -23,16 +28,12 @@ export class InventoryAddComponent implements OnInit {
     this.service.addInventory(inventory).subscribe(data => {this.inventory = data;});
   }
 
-  test() {
-    console.log("I've been clicked");
-  }
-
-  addInventoryFromForm(id :string, itemId :string, locationId :string, quantity :string) {
+  addInventoryFromForm() {
     var i = {
-      inventoryId: id as unknown as number, 
-      itemId: itemId as unknown as number,
-      locationId: locationId as unknown as number,
-      quantity: quantity as unknown as number,
+      inventoryId: this.inventoryIdControl.value as unknown as number, 
+      itemId: this.itemIdControl.value as unknown as number,
+      locationId: this.locationIdControl.value as unknown as number,
+      quantity: this.quantityControl.value as unknown as number,
       valid: true}
       this.addInventory(i);
 

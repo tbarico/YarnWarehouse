@@ -74,10 +74,12 @@ public class InventoryAtLocationServlet extends HttpServlet {
                 boolean result = false;
                 if(existingInventory == null) {
                     result = dao.addInventory(inventory);
-                    resp.getWriter().print(mapper.writeValueAsString("Inventory added to database."));
+                    if(result)
+                        resp.getWriter().print(mapper.writeValueAsString("Inventory added to database."));
                 } else {
-                    result = dao.updateQuantity(inventory.getInventoryId(), inventory.getQuantity()+existingInventory.getQuantity());
-                    resp.getWriter().print(mapper.writeValueAsString("Inventory quantity updated in database."));
+                    result = dao.updateQuantity(existingInventory.getInventoryId(), inventory.getQuantity()+existingInventory.getQuantity());
+                    if(result)
+                        resp.getWriter().print(mapper.writeValueAsString("Inventory quantity updated in database."));
                 }
                 //update location's current capacity
                 ldao.updateCurrentCapacity(inventory.getLocationId(), location.getCurrentCapacity()+inventory.getQuantity());
@@ -145,7 +147,7 @@ public class InventoryAtLocationServlet extends HttpServlet {
                 }
             } else {
                 resp.setStatus(400);
-                resp.getWriter().print(mapper.writeValueAsString("Unable to update Inventory. invalid Inventory ID."));
+                resp.getWriter().print(mapper.writeValueAsString("Unable to update Inventory. Invalid Inventory ID."));
             }
         } catch (Exception e) {
             //silently fail for now
