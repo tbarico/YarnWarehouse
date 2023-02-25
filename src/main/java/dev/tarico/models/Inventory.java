@@ -20,7 +20,7 @@ public class Inventory {
     public Inventory() {}
 
     /**
-     * Creates an Inveotry object with the specified parameters.
+     * Creates an Inventory object with the specified parameters.
      * 
      * @param inventoryId - id of this Inventory object. Must not be negative.
      * @param itemId - id of the item stored in this Inventory object. Must not be negative.
