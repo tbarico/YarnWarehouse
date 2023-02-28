@@ -36,7 +36,8 @@ public class ItemServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             InputStream reqBody = req.getInputStream();
-            Item item = mapper.readValue(reqBody, Item.class);
+            int itemId = parser.extractId(req.getPathInfo());
+            Item item = dao.findById(itemId);
             boolean result = dao.removeItem(item.getItemId());
             if (result) {
                 resp.setStatus(200);
@@ -137,7 +138,7 @@ public class ItemServlet extends HttpServlet {
                 resp.getWriter().print(mapper.writeValueAsString("Unable to update item."));
             }
         } catch(Exception e) {
-            //silently fail for now
+          //silently fail for now
         }
     }
 }

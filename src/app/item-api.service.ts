@@ -24,7 +24,6 @@ export class ItemApiService {
   }
 
   updateItem(item :Item) :Observable<any> {
-    //const url = `item/`+item.itemId as unknown as string;
     const url = `item/${item.itemId}`;
     return this.http.put(environment.url+url, item, this.httpOptions).pipe(catchError(this.handleError));
   }
@@ -32,6 +31,11 @@ export class ItemApiService {
   addItem(item :Item) :Observable<any> {
     const url = `item/${item.itemId}`;
     return this.http.post(environment.url+url, item, this.httpOptions);
+  }
+
+  deleteItem(item :Item) :Observable<any> {
+    const url = `item/${item.itemId}`;
+    return this.http.delete(environment.url+url, this.httpOptions);
   }
 
   private handleError(error: HttpErrorResponse) {

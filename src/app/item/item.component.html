@@ -1,6 +1,7 @@
 <div>
     <input type="number" name="searchId" #itemId [(ngModel)]="item"/>
     <button (click)="findItem(itemId.value)" [(ngModel)]="itemId.value">Show Item</button> 
+    <button (click)="showAddItemForm()">Add Item</button>
 </div>
 
 <div *ngIf="item">
@@ -20,10 +21,24 @@
                 <td>{{item.quantityTotal}}</td>
                 <td>{{item.price}}</td>
                 <td><button type="button" (click)="showUpdateForm()">Update</button></td>
-                <td><button type="button">Delete</button></td>
+                <td><button type="button" (click)="deleteItem(item)">Delete</button></td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<div *ngIf="addForm">
+    <form [formGroup]="addItemForm">
+        <label for="item-id">ItemId</label>
+        <input class="update-item" id="itemId" type="number" formControlName="itemId" />
+        <label for="category-name">Category</label>
+        <input class="update-item" id="category-name" type="string" formControlName="categoryName" />
+        <label for="quantity">Amount</label>
+        <input class="update-item" id="quantity" type="number" formControlName="quantityTotal" />
+        <label for="price">Price</label>
+        <input class="update-item" id="price" type="number" formControlName="price" />
+        <button type="button" class="add-button" (click)="addItemFromForm()">Submit</button>
+    </form>
 </div>
 
 <div *ngIf="updateForm">

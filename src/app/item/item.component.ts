@@ -20,7 +20,15 @@ export class ItemComponent implements OnInit {
 
   item? :Item;
   updateForm :boolean = false;
+  addForm :boolean = false;
   updateItemForm = this.formBuilder.group({
+    itemId: '',
+    categoryName: '',
+    quantityTotal: '',
+    price: '',
+    valid: true
+  })
+  addItemForm = this.formBuilder.group({
     itemId: '',
     categoryName: '',
     quantityTotal: '',
@@ -56,6 +64,24 @@ export class ItemComponent implements OnInit {
   updateItem(item :Item) {
     this.service.updateItem(item).subscribe(data => {this.item = data;});
     this.findItem(item.itemId as unknown as String);
+  }
+
+  showAddItemForm() {
+    this.addForm = true;
+  }
+
+  addItemFromForm() {
+    this.addForm = false;
+    this.addItem(this.addItemForm.value as unknown as Item);
+  }
+  
+  addItem(item :Item) {
+    this.service.addItem(item).subscribe(data => {this.item = data;});
+    this.findItem(item.itemId as unknown as String);
+  }
+
+  deleteItem(item :Item) {
+    this.service.deleteItem(item).subscribe(data => {this.item = data;});
   }
 
 }
