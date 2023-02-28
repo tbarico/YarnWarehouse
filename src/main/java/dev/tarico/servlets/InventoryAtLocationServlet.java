@@ -116,7 +116,7 @@ public class InventoryAtLocationServlet extends HttpServlet {
             if(check != null) {
                 Location location = ldao.findById(inventory.getLocationId());
                 if(location != null) {
-                    //check if location can handle new quantity if appliciable
+                    //check if location can handle new quantity if applicable
                     if (check.getQuantity() != inventory.getQuantity()) {
                         int quantity = inventory.getQuantity() - check.getQuantity();
                         if (quantity > 0) {
