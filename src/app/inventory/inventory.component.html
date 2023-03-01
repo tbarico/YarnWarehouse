@@ -1,29 +1,41 @@
  
 <div>
-    <input type="number" name="searchId" #locationId [(ngModel)]="locId"/>
-    <button (click)="findInventoryAtLocation(locationId.value)" [(ngModel)]="locationId.value">Show Inventory</button> 
+    <input type="number" name="searchId" #inventoryId [(ngModel)]="inventory"/>
+    <button (click)="findInventory(inventoryId.value)" [(ngModel)]="inventoryId.value">Show Inventory</button> 
 </div>
 
 <button type="button" (click)="goBack()">Go back</button>
 
-<app-inventory-add></app-inventory-add>
-
-<app-storage-location [onChange]='locId'></app-storage-location>
-
-<div *ngIf="inventoryList">
+<div *ngIf="inventory">
 <table>
     <thead>
         <tr>
             <th>ItemID</th>
             <th>Quantity</th>
+            <th>Location</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let invent of inventoryList">
-            <td>{{invent.itemId}}</td>
-            <td>{{invent.quantity}}</td>
-        </tr>
+        <td>{{inventory.itemId}}</td>
+        <td>{{inventory.quantity}}</td>
+        <td>{{inventory.locationId}}</td>
+        <td><button type="button" (click)="updateInventory()">Edit</button></td>
+        <td><button type="button" (click)="deleteInventory(inventory)">Delete</button></td>
     </tbody>
 </table>
 </div>
 
+<div *ngIf="updateForm">
+    <form [formGroup]="updateInventoryForm">
+        <label for="inventory-id">InventoryId</label>
+        <input class="update-inventory" id="inventoryId" type="number" formControlName="inventoryId" />
+        <label for="item-id">ItemId</label>
+        <input class="update-inventory" id="itemId" type="number" formControlName="itemId" />
+        <label for="locationId">LocationId</label>
+        <input class="update-inventory" id="locationId" type="number" formControlName="locationId" />
+        <label for="quantity">Amount</label>
+        <input class="update-inventory" id="quantity" type="number" formControlName="quantity" />
+        
+        <button type="button" class="add-button" (click)="updateInventoryFromForm()">Submit</button>
+    </form>
+</div>

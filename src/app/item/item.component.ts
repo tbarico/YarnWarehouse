@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../models/item';
 import { ItemApiService } from '../item-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder } from '@angular/forms';

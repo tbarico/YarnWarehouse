@@ -4,10 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { InventoryApiService } from '../inventory-api.service';
 import { Inventory } from '../models/inventory';
 import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 /**
  * 
- * @author Tara Arico 7.29.2022
+ * @author Tara Arico 3.1.2023
  */
 @Component({
   selector: 'app-inventory',
@@ -16,32 +17,48 @@ import { Router } from '@angular/router';
 })
 export class InventoryComponent implements OnInit {
 
-  inventoryList :Inventory[] = [];
   inventory? :Inventory;
-  locId = '';
+  updateForm :boolean = false;
+  updateInventoryForm = this.formBuilder.group({
+    inventoryId: '',
+    itemId: '',
+    locationId: '',
+    quantity: '',
+    valid: true
+  })
 
-  constructor(private service :InventoryApiService, private route :ActivatedRoute, private url :Location, private router :Router) { }
+  constructor(private service :InventoryApiService, private route :ActivatedRoute, private url :Location, private router :Router, private formBuilder :FormBuilder) { }
 
   ngOnInit(): void {
     this.findInventoryFromUrl();
   }
 
-  findInventoryAtLocation(locationId :string) {
-    this.url.go(this.router.createUrlTree(['../'], {relativeTo: this.route})+'/'+locationId);
-    this.service.findInventoryAtLocation(locationId).subscribe(data => {this.inventoryList = data});
+  findInventory(inventoryId :string) {
+    this.url.go(this.router.createUrlTree(['../'], {relativeTo: this.route})+'/'+inventoryId);
+    this.service.findInventory(inventoryId).subscribe(data => {this.inventory = data});
   }
 
   findInventoryFromUrl() {
-    const urlId = String(this.route.snapshot.paramMap.get('locationId'));
-    this.findInventoryAtLocation(urlId);
+    const urlId = String(this.route.snapshot.paramMap.get('inventoryId'));
+    this.findInventory(urlId);
   }
 
   goBack() {
     this.url.back();
   }
 
-  getLocationId() {
-    return this.locId;
+  updateInventory() {
+    this.updateForm = true;
+  }
+
+  updateInventoryFromForm() {
+    this.updateForm = false;
+    var i = this.updateInventoryForm.value as unknown as Inventory;
+    this.service.updateInventory(i).subscribe(data => {this.inventory = data;});
+  }
+
+  deleteInventory(inventory :Inventory) {
+    this.service.deleteItemFromInventory(inventory).subscribe(data => {this.inventory = data;});
   }
 
 }

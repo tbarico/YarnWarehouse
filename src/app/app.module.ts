@@ -11,6 +11,7 @@ import { StorageLocationListComponent } from './storage-location-list/storage-lo
 import { InventoryAddComponent } from './inventory-add/inventory-add.component';
 import { StorageLocationComponent } from './storage-location/storage-location.component';
 import { ItemComponent } from './item/item.component';
+import { InventoryAtLocationComponent } from './inventory-at-location/inventory-at-location.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ItemComponent } from './item/item.component';
     StorageLocationListComponent,
     InventoryAddComponent,
     StorageLocationComponent,
-    ItemComponent
+    ItemComponent,
+    InventoryAtLocationComponent
   ],
   imports: [
     BrowserModule,

@@ -29,7 +29,7 @@ public class InventoryAtLocationServlet extends HttpServlet {
     ObjectMapper mapper = new ObjectMapper();
 
     /**
-     * Takes a GET request the inventory at a given location. 
+     * Takes a GET request for the inventory at a given location. 
      * 
      * @param req - initial HTTP request.
      * @param resp - HTTP response with inventory data.

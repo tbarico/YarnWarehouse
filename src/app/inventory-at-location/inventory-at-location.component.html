@@ -1,0 +1,31 @@
+ 
+<div>
+    <input type="number" name="searchId" #locationId [(ngModel)]="locId"/>
+    <button (click)="findInventoryAtLocation(locationId.value)" [(ngModel)]="locationId.value">Show Inventory</button> 
+</div>
+
+<button type="button" (click)="goBack()">Go back</button>
+
+<app-inventory-add></app-inventory-add>
+
+<app-storage-location [onChange]='locId'></app-storage-location>
+
+<div *ngIf="inventoryList">
+<table>
+    <thead>
+        <tr>
+            <th>ItemID</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let invent of inventoryList">
+            <td>{{invent.itemId}}</td>
+            <td>{{invent.quantity}}</td>
+            <td><button type="button" (click)="updateItem(invent)">Edit</button></td>
+            <!-- td><button type="button" (click)="deleteItem(invent.inventoryId)">Delete</button></td> -->
+        </tr>
+    </tbody>
+</table>
+</div>
+
